@@ -4,6 +4,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
+import Image from 'next/image'
 import { useState } from 'react'
 import { SheetContent, SheetClose } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
@@ -98,8 +99,12 @@ export default function AddHotelForm({ onSave }: AddHotelFormProps) {
               }}
               className="block w-full h-10 text-sm text-gray-900 border border-gray-300 rounded-md bg-white file:h-full file:bg-[#EFEFEF] file:text-gray-700 file:font-medium file:border-1 file:rounded-l-md file:rounded-r-md file:px-4 file:cursor-pointer file:text-center"
             />
-            {errors.uploadImage && <p className="text-sm text-red-500">{errors.uploadImage.message}</p>}
-            {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 h-24 rounded" />}
+            {errors.uploadImage && <p className="text-sm text-red-500"></p>}
+            {imagePreview && <Image
+            src={imagePreview} alt="Preview"
+            width={96} height={96}
+            objectFit="contain"
+            className="mt-2 h-24 rounded" />}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

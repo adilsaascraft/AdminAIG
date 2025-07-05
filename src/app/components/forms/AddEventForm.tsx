@@ -2,6 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
+import Image from 'next/image'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
@@ -141,9 +142,12 @@ export default function AddEventForm({ onSave }: AddEventFormProps) {
               className="block w-full h-10 text-sm text-gray-900 border border-gray-300 rounded-md bg-white file:h-full file:bg-[#EFEFEF] file:text-gray-700 file:font-medium file:border-1 file:rounded-l-md file:rounded-r-md file:px-4 file:cursor-pointer file:text-center"
             />
             {preview && (
-              <img
+              <Image
                 src={preview}
                 alt="Preview"
+                width={96}
+                height={96}
+                objectFit="contain"
                 className="mt-2 h-24 object-contain rounded"
               />
             )}
