@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { useEffect } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import EventCard from '@/app/components/EventCard'
 import AddEventForm from '@/app/components/forms/AddEventForm'
 import eventData from '@/app/data/eventsData'
@@ -10,6 +12,17 @@ import { Button } from '@/components/ui/button'
 const tabs = ['Running', 'Live', 'Drafts', 'Past', 'Cancelled', 'All', 'Trash']
 
 export default function EventPage() {
+  useEffect(() => {
+  const showToast = localStorage.getItem('showWelcomeToast')
+  if (showToast) {
+    toast.success('Welcome back Admin!', {
+      duration: 8000,
+      position: 'top-center',
+    })
+    localStorage.removeItem('showWelcomeToast') // ✅ Clean up
+  }
+}, [])
+
   const [search, setSearch] = useState('')
   const [activeTab, setActiveTab] = useState('Running')
   const [currentPage, setCurrentPage] = useState(1)
@@ -37,8 +50,12 @@ export default function EventPage() {
   }
 
   return (
+    
     <div className="w-full p-6">
+      <Toaster position="top-center" />
+      
       <div className="flex justify-between items-center mb-4">
+
         <h1 className="text-2xl font-bold">Your Events</h1>
 
         <Sheet>
@@ -117,5 +134,6 @@ export default function EventPage() {
         </div>
       )}
     </div>
+    
   )
 }

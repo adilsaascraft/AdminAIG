@@ -1,71 +1,96 @@
-'use client';
+'use client'
 
-import '../globals.css';
-import { useState, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import '../globals.css'
+import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
+
+// Zod schema
+const loginSchema = z.object({
+  email: z.string().email({ message: 'Invalid email address' }),
+  password: z.string().min(4, { message: 'Password must be at least 4 characters' }),
+})
+
+type LoginFormData = z.infer<typeof loginSchema>
 
 export default function Login() {
-  const router = useRouter();
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const router = useRouter()
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
+  })
 
-    const hardcodedEmail = 'admin@aig.com';
-    const hardcodedPassword = 'aig@123';
+  const onSubmit = async (data: LoginFormData) => {
+    setError('')
+    setIsLoading(true)
 
-    const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-    await delay(5000); // simulate loading
+    const hardcodedEmail = 'admin@aig.com'
+    const hardcodedPassword = 'aig@123'
 
-    if (email === hardcodedEmail && password === hardcodedPassword) {
-      localStorage.setItem('token', 'mock-token');
-      router.push('/home/events');
+    await new Promise((res) => setTimeout(res, 2000))
+
+    if (data.email === hardcodedEmail && data.password === hardcodedPassword) {
+      localStorage.setItem('token', 'mock-token')
+      localStorage.setItem('token', 'mock-token')
+      localStorage.setItem('showWelcomeToast', 'true') 
+      setTimeout(() => router.push('/home/events'), 1000) // wait briefly for toast to show
     } else {
-      setError('Invalid email or password');
+      setError('Invalid email or password')
     }
 
-    setIsLoading(false);
-  };
+    setIsLoading(false)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-[#AFBDD1] to-[#FFFFFF] shadow-lg flex items-center justify-center">
+      {/* Toast container */}
+
       <div className="bg-white mt-[50px] backdrop-blur-[35px] shadow-lg rounded-2xl overflow-hidden flex flex-col md:flex-row w-full max-w-4xl">
-        
         {/* Form Section */}
         <div className="w-full md:w-1/2 p-8">
           <h2 className="text-2xl font-bold mb-6">Admin Login</h2>
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            {/* Email */}
             <div>
               <label className="block mb-1">Email</label>
               <input
                 type="email"
                 className="w-full border border-gray-300 p-2 rounded"
                 placeholder="Enter Email id"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                {...register('email')}
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+              )}
             </div>
+
+            {/* Password */}
             <div>
               <label className="block mb-1">Password</label>
               <input
                 type="password"
                 className="w-full border border-gray-300 p-2 rounded"
                 placeholder="Enter Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                {...register('password')}
               />
+              {errors.password && (
+                <p className="text-red-500 text-sm">{errors.password.message}</p>
+              )}
             </div>
 
+            {/* Custom Error */}
             {error && <p className="text-red-500 text-sm">{error}</p>}
 
+            {/* Submit Button */}
             <button
               type="submit"
               className="w-full bg-sky-800 text-white p-2 rounded hover:bg-sky-900 flex justify-center items-center gap-2"
@@ -122,5 +147,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-  );
+  )
 }
