@@ -20,7 +20,6 @@ const schema = z.object({
 type DepartmentFormData = z.infer<typeof schema>
 
 interface AddDepartmentFormProps {
-  onClose: () => void
   onSave: (department: DepartmentFormData & { id: number; status: string }) => void
 }
 
