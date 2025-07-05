@@ -30,8 +30,8 @@ export default function HotelPage() {
   )
 
   const totalPages = Math.ceil(filteredEvents.length / itemsPerPage)
-  const handleSave = (newEvent: any) => {
-    console.log('Event saved:', newEvent)
+  const handleSave = () => {
+    console.log('Event saved:')
     // TODO: Add saving logic here
   }
 

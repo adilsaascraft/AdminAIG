@@ -7,16 +7,6 @@ import eventData from '@/app/data/eventsData'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
-// ✅ Define the type for an Event
-type EventType = {
-  id: number
-  title: string
-  description: string
-  date: string
-  status: string
-  [key: string]: any // 👈 optional, if you expect more fields
-}
-
 const tabs = ['Running', 'Live', 'Drafts', 'Past', 'Cancelled', 'All', 'Trash']
 
 export default function EventPage() {
@@ -41,9 +31,8 @@ export default function EventPage() {
 
   const totalPages = Math.ceil(filteredEvents.length / itemsPerPage)
 
-  // ✅ FIXED: replaced 'any' with 'EventType'
-  const handleSave = (newEvent: EventType) => {
-    console.log('Event saved:', newEvent)
+  const handleSave = () => {
+    console.log('Event saved:')
     // TODO: Add saving logic here
   }
 
