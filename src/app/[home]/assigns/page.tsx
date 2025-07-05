@@ -10,7 +10,10 @@ const tabs = ['Active', 'Inactive', 'All', 'Trash']
 
 export default function AssignPage() {
   const [activeTab, setActiveTab] = useState<'Active' | 'Inactive' | 'All' | 'Trash'>('Active')
-
+  const handleSave = () => {
+    console.log('Event saved:')
+    // TODO: Add saving logic here
+  }
   return (
     <div className="w-full p-6">
       {/* Header and Create Organizer Sheet */}
@@ -27,7 +30,7 @@ export default function AssignPage() {
             <SheetHeader>
               <SheetTitle>Add New Assign</SheetTitle>
             </SheetHeader>
-            <AddAssignForm />
+            <AddAssignForm onSave={handleSave} />
           </SheetContent>
         </Sheet>
       </div>
