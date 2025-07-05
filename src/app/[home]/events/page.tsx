@@ -51,7 +51,7 @@ export default function EventPage() {
 
   return (
     
-    <div className="w-full p-6">
+    <div className="w-full pr-6  pt-6 pb-12">
       <Toaster position="top-center" />
       
       <div className="flex justify-between items-center mb-4">

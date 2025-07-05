@@ -57,7 +57,6 @@ export function AppSidebar() {
     <Sidebar className="fixed mt-16 w-64">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Admin Panel</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {/* Top-level items */}

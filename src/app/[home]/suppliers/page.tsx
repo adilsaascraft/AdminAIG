@@ -16,7 +16,7 @@ export default function SuplierPage() {
   }
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full pr-6  pt-6 pb-12">
       {/* Header and Create Organizer Sheet */}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Your Supliers</h1>
