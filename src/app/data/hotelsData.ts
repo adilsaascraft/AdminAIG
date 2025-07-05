@@ -1,4 +1,5 @@
-// Define a TypeScript interface for hotel data
+// src/app/data/venuesData.ts
+
 export interface Hotel {
   id: number
   image: string
@@ -8,7 +9,6 @@ export interface Hotel {
   location: string
 }
 
-// Use the interface to type the hotel data array
 const hotelsData: Hotel[] = [
   {
     id: 1,
@@ -41,7 +41,7 @@ const hotelsData: Hotel[] = [
     id: 4,
     image:
       'https://res.cloudinary.com/dr5kn8993/image/upload/v1750330467/AIG_Event_Software/DummyImages/event4_btqkhq.jpg',
-    title: ' Radisson Blu Plaza Hotel Hyderabad Banjara Hills',
+    title: 'Radisson Blu Plaza Hotel Hyderabad Banjara Hills',
     status: 'Inactive',
     category: '⭐⭐',
     location: 'Mumbai, India',

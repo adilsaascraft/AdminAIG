@@ -3,10 +3,9 @@
 import { useState } from 'react'
 import HotelCard from '@/app/components/HotelCard'
 import AddHotelForm from '@/app/components/forms/AddHotelForm'
-import hotelsData from '@/app/data/venuesData'
+import hotelsData from '@/app/data/hotelsData'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
-
 
 const tabs = ['Active', 'Inactive', 'All', 'Trash']
 
@@ -16,11 +15,12 @@ export default function HotelPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
-  const filteredByTab = activeTab === 'All'
-    ? hotelsData
-    : hotelsData.filter(venue => venue.status === activeTab)
+  const filteredByTab =
+    activeTab === 'All'
+      ? hotelsData
+      : hotelsData.filter((hotel) => hotel.status === activeTab)
 
-  const filteredEvents = filteredByTab.filter(venue =>
+  const filteredEvents = filteredByTab.filter((venue) =>
     venue.title.toLowerCase().includes(search.toLowerCase())
   )
 
@@ -30,14 +30,14 @@ export default function HotelPage() {
   )
 
   const totalPages = Math.ceil(filteredEvents.length / itemsPerPage)
+
   const handleSave = () => {
-    console.log('Event saved:')
-    // TODO: Add saving logic here
+    console.log('Hotel saved:')
+    // TODO: Add saving logic
   }
 
   return (
     <div className="w-full p-6">
-      {/* Header with Sheet */}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Your Hotels</h1>
 
@@ -47,9 +47,7 @@ export default function HotelPage() {
               Add Hotel
             </Button>
           </SheetTrigger>
-          <SheetContent
-            side="right"
-          >
+          <SheetContent side="right">
             <AddHotelForm onSave={handleSave} />
           </SheetContent>
         </Sheet>
@@ -79,7 +77,7 @@ export default function HotelPage() {
       <div className="mb-6">
         <input
           type="text"
-          placeholder="Search event..."
+          placeholder="Search hotel..."
           value={search}
           onChange={(e) => {
             setSearch(e.target.value)
@@ -89,7 +87,7 @@ export default function HotelPage() {
         />
       </div>
 
-      {/* Event Cards */}
+      {/* Hotel Cards */}
       {filteredEvents.length > 0 ? (
         <div className="flex flex-col gap-4">
           {paginatedEvents.map((hotel) => (
@@ -97,7 +95,7 @@ export default function HotelPage() {
           ))}
         </div>
       ) : (
-        <p className="text-gray-500">No events found for this status/search.</p>
+        <p className="text-gray-500">No hotels found for this status/search.</p>
       )}
 
       {/* Pagination */}

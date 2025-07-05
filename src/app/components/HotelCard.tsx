@@ -2,22 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { MapPin, } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
 import { FaChevronDown, FaHotel } from 'react-icons/fa'
+import type { Hotel } from '@/app/data/hotelsData' // ✅ Import the correct type
 
-// Define the prop types
-interface Hotel {
-  hotel: {
-    title: string
-    image: string
-    status: string
-    category: string
-    location: string
-  }
+interface HotelCardProps {
+  hotel: Hotel
 }
 
-export default function HotelCard({ hotel }: Hotel) {
+export default function HotelCard({ hotel }: HotelCardProps) {
   const [showDropdown, setShowDropdown] = useState(false)
   const dropdownRef = useRef<HTMLDivElement | null>(null)
 
@@ -45,7 +39,7 @@ export default function HotelCard({ hotel }: Hotel) {
     <div className="bg-[#FDFBFB] rounded-xl border border-gray-200 p-4 flex flex-col md:flex-row items-start md:items-center gap-4 relative">
       <Toaster position="top-right" />
 
-      {/* Event Image */}
+      {/* Image */}
       <div className="min-w-[120px] h-[160px] relative">
         <Image
           src={hotel.image}
@@ -78,10 +72,9 @@ export default function HotelCard({ hotel }: Hotel) {
         </div>
       </div>
 
-      {/* Manage + Dropdown */}
+      {/* Dropdown */}
       <div className="flex flex-col items-end gap-2 absolute top-[30px] right-[30px] z-10">
         <div className="relative" ref={dropdownRef}>
-          {/* Combined Button Group */}
           <div className="flex items-center border border-blue-700 rounded-md overflow-hidden divide-x bg-white">
             <button
               onClick={handleManage}
@@ -97,7 +90,6 @@ export default function HotelCard({ hotel }: Hotel) {
             </button>
           </div>
 
-          {/* Dropdown Menu */}
           {showDropdown && (
             <div className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-md w-32 z-20">
               <button
