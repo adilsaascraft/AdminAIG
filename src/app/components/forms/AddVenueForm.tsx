@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import Image from 'next/image'
 import { useState } from 'react'
-import { SheetContent, SheetClose } from '@/components/ui/sheet'
+import {SheetClose } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { toast } from 'sonner'
 
@@ -57,7 +57,6 @@ export default function AddVenueForm({ onSave }: AddVenueFormProps) {
   }
 
   return (
-    <SheetContent className="w-[400px] sm:w-[540px] p-0">
       <div className="flex flex-col h-screen bg-white">
         <div className="p-6 border-b">
           <h2 className="text-xl font-semibold">Add Venue</h2>
@@ -182,6 +181,5 @@ export default function AddVenueForm({ onSave }: AddVenueFormProps) {
           </Button>
         </div>
       </div>
-    </SheetContent>
   )
 }

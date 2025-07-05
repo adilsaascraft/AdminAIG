@@ -1,6 +1,6 @@
 'use client'
 
-import { SheetClose, SheetContent } from '@/components/ui/sheet'
+import { SheetClose} from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -39,7 +39,6 @@ export default function AddAssignForm({ onSave }: AddAssignFormProps) {
   }
 
   return (
-    <SheetContent className="w-[400px] sm:w-[540px] p-0">
       <div className="flex flex-col h-screen bg-white">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b">
@@ -125,6 +124,5 @@ export default function AddAssignForm({ onSave }: AddAssignFormProps) {
           </Button>
         </div>
       </div>
-    </SheetContent>
   )
 }

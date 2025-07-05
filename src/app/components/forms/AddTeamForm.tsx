@@ -4,7 +4,7 @@ import { z } from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
-import { SheetClose, SheetContent } from '@/components/ui/sheet'
+import { SheetClose} from '@/components/ui/sheet'
 import { useEffect } from 'react'
 
 const teamSchema = z.object({
@@ -44,7 +44,6 @@ export default function AddTeamForm({onSave }: AddTeamFormProps) {
   }, [reset])
 
   return (
-    <SheetContent className="w-[400px] sm:w-[540px] p-0">
       <div className="flex flex-col h-screen bg-white">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b">
@@ -138,6 +137,5 @@ export default function AddTeamForm({onSave }: AddTeamFormProps) {
           </Button>
         </div>
       </div>
-    </SheetContent>
   )
 }

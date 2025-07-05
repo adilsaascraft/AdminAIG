@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
-import { SheetClose, SheetContent } from '@/components/ui/sheet'
+import { SheetClose} from '@/components/ui/sheet'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
@@ -97,15 +97,15 @@ export default function AddEventForm({ onSave }: AddEventFormProps) {
   }
 
   return (
-    <SheetContent className="w-[400px] sm:w-[540px] p-0 ">
+    
       <div className="flex flex-col h-screen bg-white">
         <div className="p-6 border-b">
           <h2 className="text-xl font-semibold">Add Event</h2>
         </div>
-
+        <div className="flex-1 overflow-y-auto custom-scroll">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex-1 overflow-y-auto p-6 space-y-4"
+          className="flex-1 overflow-y-auto p-6 space-y-1"
         >
           <div>
             <label className="block font-medium">Event Full Name *</label>
@@ -346,6 +346,7 @@ export default function AddEventForm({ onSave }: AddEventFormProps) {
             />
           </div>
         </form>
+        </div>
 
         <div className="sticky bottom-0 left-0 right-0 bg-white border-t px-6 py-4 flex justify-between">
           <SheetClose asChild>
@@ -367,6 +368,6 @@ export default function AddEventForm({ onSave }: AddEventFormProps) {
           </Button>
         </div>
       </div>
-    </SheetContent>
+    
   )
 }

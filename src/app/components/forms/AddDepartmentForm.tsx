@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
-import { SheetClose, SheetContent } from '@/components/ui/sheet'
+import { SheetClose} from '@/components/ui/sheet'
 
 const schema = z.object({
   departmentName: z.string().min(1, 'Department Name is required'),
@@ -39,7 +39,6 @@ export default function AddDepartmentForm({ onSave}: AddDepartmentFormProps) {
   }
 
   return (
-    <SheetContent className="w-[400px] sm:w-[540px] p-0">
       <div className="flex flex-col h-screen bg-white">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b">
@@ -128,6 +127,5 @@ export default function AddDepartmentForm({ onSave}: AddDepartmentFormProps) {
           </Button>
         </div>
       </div>
-    </SheetContent>
   )
 }

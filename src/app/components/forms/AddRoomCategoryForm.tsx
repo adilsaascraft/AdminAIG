@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
-import { SheetClose, SheetContent } from '@/components/ui/sheet';
+import { SheetClose} from '@/components/ui/sheet';
 
 const formSchema = z.object({
   hotelName: z.string().min(1, 'Hotel name is required'),
@@ -35,7 +35,6 @@ export default function AddRoomForm({onSave }: AddRoomFormProps) {
   };
 
   return (
-    <SheetContent className="w-[400px] sm:w-[540px] p-0">
       <div className="flex flex-col h-screen bg-white">
         <div className="flex items-center justify-between p-6 border-b">
           <h2 className="text-xl font-semibold">Add Rooms</h2>
@@ -102,6 +101,5 @@ export default function AddRoomForm({onSave }: AddRoomFormProps) {
           </Button>
         </div>
       </div>
-    </SheetContent>
   );
 }
