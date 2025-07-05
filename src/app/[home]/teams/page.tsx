@@ -10,6 +10,10 @@ const tabs = ['Active', 'Inactive', 'All', 'Trash']
 
 export default function TeamPage() {
   const [activeTab, setActiveTab] = useState<'Active' | 'Inactive' | 'All' | 'Trash'>('Active')
+  const handleSave = () => {
+    console.log('Hotel saved:')
+    // TODO: Add saving logic
+  }
 
   return (
     <div className="w-full p-6">
@@ -27,7 +31,7 @@ export default function TeamPage() {
             <SheetHeader>
               <SheetTitle>Add New Team</SheetTitle>
             </SheetHeader>
-            <AddTeamForm />
+            <AddTeamForm onSave={handleSave}/>
           </SheetContent>
         </Sheet>
       </div>

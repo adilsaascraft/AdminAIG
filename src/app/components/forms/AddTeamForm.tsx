@@ -21,11 +21,10 @@ const teamSchema = z.object({
 type TeamFormData = z.infer<typeof teamSchema>
 
 interface AddTeamFormProps {
-  onClose: () => void
   onSave: (team: TeamFormData & { id: number; status: string }) => void
 }
 
-export default function AddTeamForm({ onClose, onSave }: AddTeamFormProps) {
+export default function AddTeamForm({onSave }: AddTeamFormProps) {
   const {
     register,
     handleSubmit,
@@ -38,7 +37,6 @@ export default function AddTeamForm({ onClose, onSave }: AddTeamFormProps) {
   const onSubmit = (data: TeamFormData) => {
     onSave({ ...data, id: Date.now(), status: 'Live' })
     reset()
-    onClose()
   }
 
   useEffect(() => {

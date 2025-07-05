@@ -16,11 +16,10 @@ const formSchema = z.object({
 type RoomFormData = z.infer<typeof formSchema>;
 
 interface AddRoomFormProps {
-  onClose: () => void;
   onSave: (data: RoomFormData & { id: number; status: string }) => void;
 }
 
-export default function AddRoomForm({ onClose, onSave }: AddRoomFormProps) {
+export default function AddRoomForm({onSave }: AddRoomFormProps) {
   const {
     register,
     handleSubmit,
@@ -33,7 +32,6 @@ export default function AddRoomForm({ onClose, onSave }: AddRoomFormProps) {
   const onSubmit = (data: RoomFormData) => {
     onSave({ ...data, id: Date.now(), status: 'Live' });
     reset();
-    onClose();
   };
 
   return (

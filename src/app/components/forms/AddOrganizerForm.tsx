@@ -19,11 +19,10 @@ const formSchema = z.object({
 type OrganizerFormData = z.infer<typeof formSchema>
 
 type AddOrganizerFormProps = {
-  onClose: () => void
   onSave: (organizer: OrganizerFormData & { id: number; status: string }) => void
 }
 
-export default function AddOrganizerForm({ onClose, onSave }: AddOrganizerFormProps) {
+export default function AddOrganizerForm({onSave }: AddOrganizerFormProps) {
   const {
     register,
     handleSubmit,
@@ -36,7 +35,6 @@ export default function AddOrganizerForm({ onClose, onSave }: AddOrganizerFormPr
   const onSubmit = (data: OrganizerFormData) => {
     onSave({ ...data, id: Date.now(), status: 'Live' })
     reset()
-    onClose()
   }
 
   return (

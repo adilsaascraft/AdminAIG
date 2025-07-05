@@ -20,11 +20,10 @@ const supplierSchema = z.object({
 type SupplierFormData = z.infer<typeof supplierSchema>
 
 type AddSupplierFormProps = {
-  onClose: () => void
   onSave: (data: SupplierFormData & { id: number; status: string }) => void
 }
 
-export default function AddSupplierForm({ onClose, onSave }: AddSupplierFormProps) {
+export default function AddSupplierForm({onSave }: AddSupplierFormProps) {
   const {
     register,
     handleSubmit,
@@ -37,7 +36,6 @@ export default function AddSupplierForm({ onClose, onSave }: AddSupplierFormProp
   const onSubmit = (data: SupplierFormData) => {
     onSave({ ...data, id: Date.now(), status: 'Live' })
     reset()
-    onClose()
   }
 
   return (
