@@ -24,7 +24,7 @@ interface AddDepartmentFormProps {
   onSave: (department: DepartmentFormData & { id: number; status: string }) => void
 }
 
-export default function AddDepartmentForm({ onSave, onClose }: AddDepartmentFormProps) {
+export default function AddDepartmentForm({ onSave}: AddDepartmentFormProps) {
   const {
     register,
     handleSubmit,
@@ -37,7 +37,6 @@ export default function AddDepartmentForm({ onSave, onClose }: AddDepartmentForm
   const onSubmit = (data: DepartmentFormData) => {
     onSave({ ...data, id: Date.now(), status: 'Live' })
     reset()
-    onClose()
   }
 
   return (

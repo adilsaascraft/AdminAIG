@@ -10,6 +10,10 @@ const tabs = ['Active', 'Inactive', 'All', 'Trash']
 
 export default function DepartmentPage() {
   const [activeTab, setActiveTab] = useState<'Active' | 'Inactive' | 'All' | 'Trash'>('Active')
+  const handleSave = () => {
+    console.log('Event saved:')
+    // TODO: Add saving logic here
+  }
 
   return (
     <div className="w-full p-6">
@@ -27,7 +31,7 @@ export default function DepartmentPage() {
             <SheetHeader>
               <SheetTitle>Add New Department</SheetTitle>
             </SheetHeader>
-            <AddDepartmentForm />
+            <AddDepartmentForm onSave={handleSave} />
           </SheetContent>
         </Sheet>
       </div>
