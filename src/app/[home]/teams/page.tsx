@@ -20,7 +20,7 @@ export default function TeamPage() {
         <Sheet>
           <SheetTrigger asChild>
             <Button className="bg-[#035D8A] hover:bg-[#02466b] text-white">
-              Create Team
+              Add Team
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">

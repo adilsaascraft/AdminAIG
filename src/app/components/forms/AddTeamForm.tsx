@@ -1,15 +1,24 @@
 'use client'
 
-import { useState, ChangeEvent, FormEvent } from 'react'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
 import { SheetClose, SheetContent } from '@/components/ui/sheet'
+import { useEffect } from 'react'
 
-interface TeamFormData {
-  organizerName: string
-  contactPersonName: string
-  contactPersonEmail: string
-  contactPersonMobile: string
-}
+const teamSchema = z.object({
+  organizerName: z.string().min(1, 'Company Name is required'),
+  contactPersonName: z.string().min(1, 'Contact Person Name is required'),
+  contactPersonEmail: z.string().email('Invalid email'),
+  contactPersonMobile: z
+    .string()
+    .min(10, 'Mobile number must be at least 10 digits')
+    .max(10, 'Mobile number can not be more than 10 digits')
+    .regex(/^\d{10}$/, 'Mobile number must be 10 digits'),
+})
+
+type TeamFormData = z.infer<typeof teamSchema>
 
 interface AddTeamFormProps {
   onClose: () => void
@@ -17,87 +26,95 @@ interface AddTeamFormProps {
 }
 
 export default function AddTeamForm({ onClose, onSave }: AddTeamFormProps) {
-  const [formData, setFormData] = useState<TeamFormData>({
-    organizerName: '',
-    contactPersonName: '',
-    contactPersonEmail: '',
-    contactPersonMobile: '',
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<TeamFormData>({
+    resolver: zodResolver(teamSchema),
   })
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    onSave({ ...formData, id: Date.now(), status: 'Live' })
+  const onSubmit = (data: TeamFormData) => {
+    onSave({ ...data, id: Date.now(), status: 'Live' })
+    reset()
     onClose()
   }
+
+  useEffect(() => {
+    reset()
+  }, [reset])
 
   return (
     <SheetContent className="w-[400px] sm:w-[540px] p-0">
       <div className="flex flex-col h-screen bg-white">
-        {/* Header without custom close button */}
+        {/* Header */}
         <div className="flex items-center justify-between p-6 border-b">
           <h2 className="text-xl font-semibold">Add Team</h2>
         </div>
 
         {/* Scrollable Form */}
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex-1 overflow-y-auto p-6 space-y-4"
         >
           <div>
             <label className="block font-medium">Company Name *</label>
             <input
               type="text"
-              name="organizerName"
-              placeholder='Enter company name'
-              required
-              value={formData.organizerName}
-              onChange={handleChange}
+              {...register('organizerName')}
+              placeholder="Enter company name"
               className="w-full border border-gray-300 px-3 py-2 rounded-md"
             />
+            {errors.organizerName && (
+              <p className="text-sm text-red-600 mt-1">{errors.organizerName.message}</p>
+            )}
           </div>
 
           <div>
             <label className="block font-medium">Contact Person Name *</label>
             <input
               type="text"
-              name="contactPersonName"
-              placeholder='Enter contact person name'
-              required
-              value={formData.contactPersonName}
-              onChange={handleChange}
+              {...register('contactPersonName')}
+              placeholder="Enter contact person name"
               className="w-full border border-gray-300 px-3 py-2 rounded-md"
             />
+            {errors.contactPersonName && (
+              <p className="text-sm text-red-600 mt-1">{errors.contactPersonName.message}</p>
+            )}
           </div>
 
           <div>
             <label className="block font-medium">Contact Person Email Id *</label>
             <input
               type="email"
-              name="contactPersonEmail"
-              placeholder='Enter contact person email'
-              required
-              value={formData.contactPersonEmail}
-              onChange={handleChange}
+              {...register('contactPersonEmail')}
+              placeholder="Enter contact person email"
               className="w-full border border-gray-300 px-3 py-2 rounded-md"
             />
+            {errors.contactPersonEmail && (
+              <p className="text-sm text-red-600 mt-1">{errors.contactPersonEmail.message}</p>
+            )}
           </div>
 
           <div>
             <label className="block font-medium">Contact Person Mobile Number *</label>
             <input
-              type="tel"
-              name="contactPersonMobile"
-              placeholder='Enter contact person mobile number'
-              required
-              value={formData.contactPersonMobile}
-              onChange={handleChange}
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={10}
+              {...register('contactPersonMobile')}
+              placeholder="Enter 10-digit mobile number"
               className="w-full border border-gray-300 px-3 py-2 rounded-md"
+              onInput={(e) => {
+                const input = e.currentTarget
+                input.value = input.value.replace(/\D/g, '').slice(0, 10) // keep only digits and max 10
+              }}
             />
+            {errors.contactPersonMobile && (
+              <p className="text-sm text-red-600 mt-1">{errors.contactPersonMobile.message}</p>
+            )}
           </div>
         </form>
 
@@ -115,8 +132,9 @@ export default function AddTeamForm({ onClose, onSave }: AddTeamFormProps) {
 
           <Button
             type="submit"
+            form="form"
             className="bg-sky-800 text-white hover:bg-sky-900"
-            onClick={handleSubmit}
+            onClick={handleSubmit(onSubmit)}
           >
             Save
           </Button>

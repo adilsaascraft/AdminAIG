@@ -13,6 +13,7 @@ const formSchema = z.object({
     .string()
     .min(10, 'Mobile number must be at least 10 digits')
     .max(10, 'Mobile number can not be more than 10 digits')
+    .regex(/^\d{10}$/, 'Only numeric digits allowed'),
 })
 
 type OrganizerFormData = z.infer<typeof formSchema>
@@ -91,11 +92,19 @@ export default function AddOrganizerForm({ onClose, onSave }: AddOrganizerFormPr
           <div>
             <label className="block font-medium mb-1">Contact Person Mobile Number *</label>
             <input
-              type="tel"
+              type="text"
+              inputMode="numeric"
+              pattern="[0-9]*"
+              maxLength={10}
               {...register('contactPersonMobile')}
-              placeholder="Enter contact person mobile number"
+              placeholder="Enter 10-digit mobile number"
               className="w-full border border-gray-300 px-3 py-2 rounded-md"
+              onInput={(e) => {
+                const input = e.currentTarget
+                input.value = input.value.replace(/\D/g, '').slice(0, 10) // keep only digits and max 10
+              }}
             />
+
             {errors.contactPersonMobile && (
               <p className="text-red-600 text-sm mt-1">{errors.contactPersonMobile.message}</p>
             )}

@@ -20,7 +20,7 @@ export default function DepartmentPage() {
         <Sheet>
           <SheetTrigger asChild>
             <Button className="bg-[#035D8A] hover:bg-[#02466b] text-white">
-              Create Department
+              Add Department
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">
