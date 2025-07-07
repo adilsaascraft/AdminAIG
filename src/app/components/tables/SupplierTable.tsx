@@ -5,7 +5,7 @@ import { FaFilter, FaSort } from 'react-icons/fa'
 import * as XLSX from 'xlsx'
 import suppliersData from '@/app/data/suppliersData'
 
-interface Department {
+interface Supplier {
   id: number
   status: 'Active' | 'Inactive'
   name: string
@@ -20,9 +20,9 @@ interface SuplierTableProps {
 }
 
 export default function SupplierTable({ activeTab }: SuplierTableProps) {
-  const [data, setData] = useState<Department[]>(suppliersData)
+  const [data, setData] = useState<Supplier[]>(suppliersData)
   const [search, setSearch] = useState('')
-  const [editItem, setEditItem] = useState<Department | null>(null)
+  const [editItem, setEditItem] = useState<Supplier | null>(null)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [sortAsc, setSortAsc] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
@@ -126,8 +126,8 @@ export default function SupplierTable({ activeTab }: SuplierTableProps) {
                 </td>
                 <td className="px-2 py-2">{item.id}</td>
                 <td className="px-2 py-2 whitespace-pre-wrap">{item.name}</td>
-                <td className="px-2 py-2">{item.contact}</td>
                 <td className="px-2 py-2">{item.services}</td>
+                <td className="px-2 py-2">{item.contact}</td>
                 <td className="px-2 py-2">{item.phone}</td>
                 <td className="px-2 py-2">{item.email}</td>
                 <td className="px-2 py-2">

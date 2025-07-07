@@ -1,4 +1,4 @@
-interface Department {
+interface Supplier {
   id: number;
   status: 'Active' | 'Inactive';
   name: string;
@@ -8,7 +8,7 @@ interface Department {
   email: string;
 }
 
-const suppliersData: Department[] = [
+const suppliersData: Supplier[] = [
 {
     id: 1,
     status: 'Active',
