@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import RoomCategoryTable from '@/app/components/tables/RoomCategoryTable'
 import AddRoomCategoryForm from '@/app/components/forms/AddRoomCategoryForm'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent,SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
 const tabs = ['Active', 'Inactive', 'All', 'Trash']
@@ -28,9 +28,6 @@ export default function RoomCategoryPage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">
-            <SheetHeader>
-              <SheetTitle>Add New Room</SheetTitle>
-            </SheetHeader>
             <AddRoomCategoryForm onSave={handleSave}/>
           </SheetContent>
         </Sheet>

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import TeamTable from '@/app/components/tables/TeamTable'
 import AddTeamForm from '@/app/components/forms/AddTeamForm'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent,SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
 const tabs = ['Active', 'Inactive', 'All', 'Trash']
@@ -28,9 +28,6 @@ export default function TeamPage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">
-            <SheetHeader>
-              <SheetTitle>Add New Team</SheetTitle>
-            </SheetHeader>
             <AddTeamForm onSave={handleSave}/>
           </SheetContent>
         </Sheet>

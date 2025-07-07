@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import AssignTable from '@/app/components/tables/AssignTable'
 import AddAssignForm from '@/app/components/forms/AddAssignForm'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
 const tabs = ['Active', 'Inactive', 'All', 'Trash']
@@ -27,9 +27,6 @@ export default function AssignPage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">
-            <SheetHeader>
-              <SheetTitle>Add New Assign</SheetTitle>
-            </SheetHeader>
             <AddAssignForm onSave={handleSave} />
           </SheetContent>
         </Sheet>

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import OrganizerTable from '@/app/components/tables/OrganizerTable'
 import AddOrganizerForm from '@/app/components/forms/AddOrganizerForm'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
 const tabs = ['Active', 'Inactive', 'All', 'Trash']
@@ -28,9 +28,6 @@ export default function OrganizerPage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">
-            <SheetHeader>
-              <SheetTitle>Add New Organizer</SheetTitle>
-            </SheetHeader>
             <AddOrganizerForm onSave={handleSave}/>
           </SheetContent>
         </Sheet>

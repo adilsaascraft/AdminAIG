@@ -1,20 +1,15 @@
 'use client'
 
-import { SheetClose} from '@/components/ui/sheet'
+import { SheetClose } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
+// Schema
 const assignSchema = z.object({
   departmentName: z.string().min(1, 'Event name is required'),
   contactPersonName: z.string().min(1, 'Assign person name is required'),
-  contactPersonEmail: z.string().email('Invalid email address'),
-  contactPersonMobile: z
-    .string()
-    .min(10, 'Mobile must be at least 10 digits')
-    .max(10, 'Mobile number can not be more than 10 digits')
-    .regex(/^\d{10}$/, 'Mobile number must be exactly 10 digits')
 })
 
 type AssignFormData = z.infer<typeof assignSchema>
@@ -39,90 +34,66 @@ export default function AddAssignForm({ onSave }: AddAssignFormProps) {
   }
 
   return (
-      <div className="flex flex-col h-screen bg-white">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b">
-          <h2 className="text-xl font-semibold">Add Assigns</h2>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto p-6 space-y-4">
-          <div>
-            <label className="block font-medium">Event Name *</label>
-            <input
-              type="text"
-              placeholder="Enter event name"
-              {...register('departmentName')}
-              className="w-full border border-gray-300 px-3 py-2 rounded-md"
-            />
-            {errors.departmentName && (
-              <p className="text-sm text-red-500 mt-1">{errors.departmentName.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block font-medium">Assign Person Name *</label>
-            <input
-              type="text"
-              placeholder="Enter team person name"
-              {...register('contactPersonName')}
-              className="w-full border border-gray-300 px-3 py-2 rounded-md"
-            />
-            {errors.contactPersonName && (
-              <p className="text-sm text-red-500 mt-1">{errors.contactPersonName.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block font-medium">Contact Person Email Id *</label>
-            <input
-              type="email"
-              placeholder="Enter contact person email"
-              {...register('contactPersonEmail')}
-              className="w-full border border-gray-300 px-3 py-2 rounded-md"
-            />
-            {errors.contactPersonEmail && (
-              <p className="text-sm text-red-500 mt-1">{errors.contactPersonEmail.message}</p>
-            )}
-          </div>
-
-          <div>
-            <label className="block font-medium">Contact Person Mobile Number *</label>
-            <input
-              type="text"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              maxLength={10}
-              {...register('contactPersonMobile')}
-              placeholder="Enter 10-digit mobile number"
-              className="w-full border border-gray-300 px-3 py-2 rounded-md"
-              onInput={(e) => {
-              const input = e.currentTarget
-              input.value = input.value.replace(/\D/g, '').slice(0, 10) // keep only digits and max 10
-              }}
-            />
-            {errors.contactPersonMobile && (
-              <p className="text-sm text-red-500 mt-1">{errors.contactPersonMobile.message}</p>
-            )}
-          </div>
-        </form>
-
-        {/* Footer */}
-        <div className="sticky bottom-0 left-0 right-0 bg-white border-t px-6 py-4 flex justify-between">
-          <SheetClose asChild>
-            <Button type="button" variant="outline" className="border border-gray-400">
-              Close
-            </Button>
-          </SheetClose>
-          <Button
-            type="submit"
-            form="form"
-            className="bg-sky-800 text-white hover:bg-sky-900"
-            onClick={handleSubmit(onSubmit)}
-          >
-            Save
-          </Button>
-        </div>
+    <div className="flex flex-col h-screen bg-white">
+      {/* Header */}
+      <div className="flex items-center justify-between p-6 border-b">
+        <h2 className="text-xl font-semibold">Add Assign</h2>
       </div>
+
+      {/* Form */}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex-1 overflow-y-auto p-6 space-y-4"
+        id="assignForm"
+      >
+        {/* Event Dropdown */}
+        <div>
+          <label className="block font-medium">Event Name *</label>
+          <select
+            {...register('departmentName')}
+            className="w-full border border-gray-300 px-3 py-2 rounded-md"
+          >
+            <option value="">Select Event</option>
+            <option value="Tech Conference">Tech Conference</option>
+            <option value="Innovation Expo">Innovation Expo</option>
+          </select>
+          {errors.departmentName && (
+            <p className="text-sm text-red-500 mt-1">{errors.departmentName.message}</p>
+          )}
+        </div>
+
+        {/* Assign Person Dropdown */}
+        <div>
+          <label className="block font-medium">Assign Person Name *</label>
+          <select
+            {...register('contactPersonName')}
+            className="w-full border border-gray-300 px-3 py-2 rounded-md"
+          >
+            <option value="">Select Person</option>
+            <option value="Mohammad Adil">Mohammad Adil</option>
+            <option value="Fatima Shaikh">Fatima Shaikh</option>
+          </select>
+          {errors.contactPersonName && (
+            <p className="text-sm text-red-500 mt-1">{errors.contactPersonName.message}</p>
+          )}
+        </div>
+      </form>
+
+      {/* Footer */}
+      <div className="sticky bottom-0 left-0 right-0 bg-white border-t px-6 py-4 flex justify-between">
+        <SheetClose asChild>
+          <Button type="button" variant="outline" className="border border-gray-400">
+            Close
+          </Button>
+        </SheetClose>
+        <Button
+          type="submit"
+          form="assignForm"
+          className="bg-sky-800 text-white hover:bg-sky-900"
+        >
+          Save
+        </Button>
+      </div>
+    </div>
   )
 }

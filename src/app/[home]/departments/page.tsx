@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import DepartmentTable from '@/app/components/tables/DepartmentTable'
 import AddDepartmentForm from '@/app/components/forms/AddDepartmentForm'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
 const tabs = ['Active', 'Inactive', 'All', 'Trash']
@@ -28,9 +28,6 @@ export default function DepartmentPage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">
-            <SheetHeader>
-              <SheetTitle>Add New Department</SheetTitle>
-            </SheetHeader>
             <AddDepartmentForm onSave={handleSave} />
           </SheetContent>
         </Sheet>

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import SuplierTable from '@/app/components/tables/SupplierTable'
 import AddSuplierForm from '@/app/components/forms/AddSuplierForm'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Sheet, SheetContent,SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
 const tabs = ['Active', 'Inactive', 'All', 'Trash']
@@ -28,9 +28,6 @@ export default function SuplierPage() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[400px] sm:w-[540px]">
-            <SheetHeader>
-              <SheetTitle>Add New Suplier</SheetTitle>
-            </SheetHeader>
             <AddSuplierForm onSave={handleSave} />
           </SheetContent>
         </Sheet>
