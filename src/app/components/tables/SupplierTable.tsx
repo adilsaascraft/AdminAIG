@@ -103,7 +103,7 @@ export default function SupplierTable({ activeTab }: SuplierTableProps) {
                 # <FaSort className="inline" />
               </th>
               <th className="px-2 py-2 text-left cursor-pointer" onClick={() => setSortAsc(!sortAsc)}>
-                SUPLIER NAME <FaSort className="inline ml-2" />
+                SUPLIER NAME
               </th>
               <th className="px-2 py-2 text-left">SERVICES</th>
               <th className="px-2 py-2 text-left">CONTACT PERSON</th>

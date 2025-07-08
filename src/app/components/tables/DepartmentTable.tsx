@@ -102,7 +102,7 @@ export default function DepartmentTable({ activeTab }: DepartmentTableProps) {
                 # <FaSort className="inline" />
               </th>
               <th className="px-2 py-2 text-left cursor-pointer" onClick={() => setSortAsc(!sortAsc)}>
-                DEPARTMENT NAME <FaSort className="inline ml-2" />
+                DEPARTMENT NAME
               </th>
               <th className="px-2 py-2 text-left">CONTACT PERSON</th>
               <th className="px-2 py-2 text-left">MOBILE NO</th>

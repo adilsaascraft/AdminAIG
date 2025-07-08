@@ -102,7 +102,7 @@ export default function SupplierTable({ activeTab }: SuplierTableProps) {
                 # <FaSort className="inline" />
               </th>
               <th className="px-2 py-2 text-left cursor-pointer" onClick={() => setSortAsc(!sortAsc)}>
-                Hotel NAME <FaSort className="inline ml-2" />
+                Hotel NAME
               </th>
               <th className="px-2 py-2 text-left">ROOM CATEGORY</th>
               <th className="px-2 py-2 text-left">ROOM TYPE</th>

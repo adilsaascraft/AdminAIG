@@ -102,7 +102,7 @@ export default function TeamTable({ activeTab }: TeamTableProps) {
                 # <FaSort className="inline" />
               </th>
               <th className="px-2 py-2 text-left cursor-pointer" onClick={() => setSortAsc(!sortAsc)}>
-                COMPANY NAME <FaSort className="inline ml-2" />
+                COMPANY NAME
               </th>
               <th className="px-2 py-2 text-left">PERSON NAME</th>
               <th className="px-2 py-2 text-left">MOBILE NO</th>
