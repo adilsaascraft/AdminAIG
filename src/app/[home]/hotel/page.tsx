@@ -43,7 +43,7 @@ export default function HotelPage() {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button className="bg-[#035D8A] hover:bg-[#02466b] text-white">
+            <Button className="bg-[#035D8A] hover:bg-[#02466b] text-white cursor-pointer">
               Add Hotel
             </Button>
           </SheetTrigger>
@@ -62,7 +62,7 @@ export default function HotelPage() {
               setActiveTab(tab)
               setCurrentPage(1)
             }}
-            className={`pb-2 border-b-2 transition-colors duration-200 ${
+            className={`pb-2 border-b-2 transition-colors duration-200 cursor-pointer ${
               tab === activeTab
                 ? 'border-[#035D8A] text-[#035D8A] font-semibold'
                 : 'border-transparent hover:text-black'

@@ -100,10 +100,10 @@ export default function EventCard({ event }: EventCardProps) {
       {/* Manage + Dropdown */}
       <div className="flex flex-col items-end gap-2 absolute top-[30px] right-[30px] z-10">
         <div className="relative" ref={dropdownRef}>
-          <div className="flex items-center border border-gray-200 rounded-md overflow-hidden divide-x bg-white">
+          <div className="flex items-center border border-gray-200 rounded-md overflow-hidden divide-x bg-white hover:bg-gray-100">
             <button
               onClick={handleManage}
-              className="px-3 py-1 text-black border-gray-300 hover:bg-gray-100 text-sm"
+              className="px-3 py-1 text-black border-gray-300 bg-white hover:bg-gray-100 text-sm"
             >
               Manage
             </button>

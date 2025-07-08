@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { FaFilter, FaSort } from 'react-icons/fa'
+import Image from 'next/image'
 import * as XLSX from 'xlsx'
 import assignsData from '@/app/data/assignsData'
 
@@ -168,9 +169,12 @@ export default function DepartmentTable({ activeTab }: DepartmentTableProps) {
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
           >
-            <img
+            <Image
               src="https://res.cloudinary.com/dr5kn8993/image/upload/v1750588710/AIG_Event_Software/icons/Button_pgb6by.png"
               alt="prev-button"
+              width={30}
+              height={30}
+              className="cursor-pointer"
             />
           </button>
           <span className="text-sm text-gray-600">{currentPage}/{totalPages}</span>
@@ -179,9 +183,12 @@ export default function DepartmentTable({ activeTab }: DepartmentTableProps) {
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
           >
-            <img
+            <Image
               src="https://res.cloudinary.com/dr5kn8993/image/upload/v1750588709/AIG_Event_Software/icons/Button_1_zpiuxy.png"
               alt="next-button"
+              width={30}
+              height={30}
+              className="cursor-pointer"
             />
           </button>
         </div>

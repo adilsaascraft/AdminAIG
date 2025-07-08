@@ -72,24 +72,25 @@ export default function HotelCard({ hotel }: HotelCardProps) {
         </div>
       </div>
 
-      {/* Dropdown */}
+      {/* Manage + Dropdown */}
       <div className="flex flex-col items-end gap-2 absolute top-[30px] right-[30px] z-10">
         <div className="relative" ref={dropdownRef}>
-          <div className="flex items-center border border-blue-700 rounded-md overflow-hidden divide-x bg-white">
+          <div className="flex items-center border border-gray-200 rounded-md overflow-hidden divide-x bg-white hover:bg-gray-100">
             <button
               onClick={handleManage}
-              className="px-3 py-1 text-blue-700 hover:bg-blue-50 text-sm"
+              className="px-3 py-1 text-black border-gray-300 bg-white hover:bg-gray-100 text-sm"
             >
               Manage
             </button>
             <button
               onClick={() => setShowDropdown(!showDropdown)}
-              className="px-2 hover:bg-blue-50 text-blue-700"
+              className="px-2 hover:bg-gray-100 text-gray-300"
             >
               <FaChevronDown size={14} />
             </button>
           </div>
 
+          {/* Dropdown Menu */}
           {showDropdown && (
             <div className="absolute right-0 mt-2 bg-white border border-gray-200 rounded-md shadow-md w-32 z-20">
               <button
